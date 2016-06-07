@@ -3,10 +3,12 @@ package com.yohaq.titan
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.roughike.bottombar.BottomBar
 import com.roughike.bottombar.OnMenuTabClickListener
 import kotlinx.android.synthetic.main.activity_workout_history.*
+import kotlinx.android.synthetic.main.view_exercises.*
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import kotlinx.android.synthetic.main.view_history.view.*
 
@@ -19,6 +21,8 @@ class WorkoutHistoryActivity : AppCompatActivity() {
         val activity = this;
         setContentView(R.layout.activity_workout_history)
 
+        exercise_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        exercise_list.adapter = ExercisesAdapter()
         bottomBar = BottomBar.attach(this, savedInstanceState)
 
         bottomBar!!.setItems(R.menu.bottom_bar_menu);
