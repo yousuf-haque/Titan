@@ -3,9 +3,12 @@ package com.yohaq.titan
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.view.View
 import com.roughike.bottombar.BottomBar
 import com.roughike.bottombar.OnMenuTabClickListener
+import kotlinx.android.synthetic.main.activity_workout_history.*
+import kotlinx.android.synthetic.main.view_exercises.view.*
+import kotlinx.android.synthetic.main.view_history.view.*
 
 class WorkoutHistoryActivity : AppCompatActivity() {
 
@@ -30,8 +33,15 @@ class WorkoutHistoryActivity : AppCompatActivity() {
 
             private fun handleExerciseNavigation(menuItemId: Int) {
                 when (menuItemId) {
-                    R.id.history_nav_button -> Toast.makeText(activity, "history", Toast.LENGTH_LONG).show()
-                    R.id.exercise_nav_button -> Toast.makeText(activity, "exercises", Toast.LENGTH_LONG).show()
+                    R.id.history_nav_button -> {
+                        activity.content.history_list.visibility = View.VISIBLE
+                        activity.content.exercise_list.visibility = View.GONE
+
+                    }
+                    R.id.exercise_nav_button -> {
+                        activity.content.exercise_list.visibility = View.VISIBLE
+                        activity.content.history_list.visibility = View.GONE
+                    }
                 }
             }
         });
