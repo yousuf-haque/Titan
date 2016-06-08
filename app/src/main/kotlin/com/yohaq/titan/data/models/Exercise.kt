@@ -1,4 +1,4 @@
-package com.yohaq.titan
+package com.yohaq.titan.data.models
 
 /**
  * Created by yousufhaque on 6/7/16.

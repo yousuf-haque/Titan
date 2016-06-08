@@ -1,4 +1,4 @@
-package com.yohaq.titan
+package com.yohaq.titan.ui.adapters
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.yohaq.titan.R
+import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
+import com.yohaq.titan.ui.viewModels.ExerciseViewModel
 import java.util.*
 
 /**
@@ -31,6 +34,8 @@ class ExercisesAdapter : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHold
 
 
     override fun onBindViewHolder(holder: ExercisesViewHolder, position: Int) {
+        //Seems like an IDE bug: https://youtrack.jetbrains.com/issue/KT-12402
+        @Suppress("MISSING_DEPENDENCY_CLASS")
         holder.exerciseItemBinding.viewModel = ExerciseViewModel(exercises[position])
 
     }

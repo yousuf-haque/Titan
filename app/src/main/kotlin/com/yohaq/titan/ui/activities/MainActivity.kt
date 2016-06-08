@@ -1,4 +1,4 @@
-package com.yohaq.titan
+package com.yohaq.titan.ui.activities
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,19 +7,21 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.roughike.bottombar.BottomBar
 import com.roughike.bottombar.OnMenuTabClickListener
-import kotlinx.android.synthetic.main.activity_workout_history.*
+import com.yohaq.titan.R
+import com.yohaq.titan.ui.adapters.ExercisesAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_exercises.*
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import kotlinx.android.synthetic.main.view_history.view.*
 
-class WorkoutHistoryActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private var bottomBar: BottomBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val activity = this;
-        setContentView(R.layout.activity_workout_history)
+        setContentView(R.layout.activity_main)
 
         exercise_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         exercise_list.adapter = ExercisesAdapter()
