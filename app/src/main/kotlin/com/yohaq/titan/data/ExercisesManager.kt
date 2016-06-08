@@ -1,6 +1,7 @@
 package com.yohaq.titan.data
 
 import com.yohaq.titan.data.models.Exercise
+import rx.Observable
 import java.util.*
 import javax.inject.Inject
 
@@ -15,12 +16,12 @@ class ExercisesManager @Inject constructor() {
     init {
 
         exercises = ArrayList<Exercise>()
-        for (name in arrayOf("push up", "sit up", "DataManager working")) {
+        for (name in arrayOf("push up", "sit up", "DataManager working", "RX working")) {
             (exercises as ArrayList<Exercise>).add(Exercise(name))
         }
 
     }
 
 
-    fun getExercises() = exercises
+    fun getExercises() = Observable.just(exercises)
 }

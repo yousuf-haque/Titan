@@ -21,11 +21,11 @@ abstract class BasePresenter<MvpView> : Presenter<MvpView> {
         unsubscribe()
     }
 
-    fun subscribe() {
+    open fun subscribe() {
         subscriptions = CompositeSubscription()
     }
 
-    fun unsubscribe() {
+    open fun unsubscribe() {
         subscriptions?.unsubscribe()
         subscriptions = null
     }
