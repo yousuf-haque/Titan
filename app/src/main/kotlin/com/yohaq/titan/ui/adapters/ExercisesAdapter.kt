@@ -9,29 +9,35 @@ import android.widget.Toast
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
+import com.yohaq.titan.presenters.ExerciseCatalogPresenter
 import com.yohaq.titan.ui.viewModels.ExerciseViewModel
+import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by yousufhaque on 6/7/16.
  */
-class ExercisesAdapter : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>() {
-    lateinit var exercises: List<Exercise>
+class ExercisesAdapter @Inject constructor(val presenter: ExerciseCatalogPresenter) : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>(), ExerciseCatalogView {
 
-    init {
-
-        exercises = ArrayList<Exercise>()
-        for (name in arrayOf("push up", "sit up")) {
-            (exercises as ArrayList<Exercise>).add(Exercise(name))
-        }
-
-    }
 
     class ExercisesViewHolder(val exerciseItemBinding: ExerciseItemBinding) : RecyclerView.ViewHolder(exerciseItemBinding.root)
 
 
+    private var exercises: List<Exercise>
+
+    init {
+        exercises = ArrayList<Exercise>()
+    }
+
+
     override fun getItemCount() = exercises.size
 
+
+    override fun showExercises(exercises: List<Exercise>) {
+        this.exercises = exercises
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(holder: ExercisesViewHolder, position: Int) {
         //Seems like an IDE bug: https://youtrack.jetbrains.com/issue/KT-12402
@@ -50,4 +56,13 @@ class ExercisesAdapter : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHold
         return ExercisesViewHolder(exerciseItemBinding)
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+        super.onAttachedToRecyclerView(recyclerView)
+        presenter.attachView(this)
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        presenter.detachView()
+    }
 }

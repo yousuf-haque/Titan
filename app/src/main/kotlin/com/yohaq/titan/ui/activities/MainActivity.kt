@@ -8,25 +8,40 @@ import android.view.View
 import com.roughike.bottombar.BottomBar
 import com.roughike.bottombar.OnMenuTabClickListener
 import com.yohaq.titan.R
+import com.yohaq.titan.injection.components.DaggerMainActivityComponent
 import com.yohaq.titan.ui.adapters.ExercisesAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_exercises.*
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import kotlinx.android.synthetic.main.view_history.view.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private var bottomBar: BottomBar? = null
 
+    @Inject
+    lateinit var exerciseAdapter: ExercisesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val activity = this;
         setContentView(R.layout.activity_main)
+        DaggerMainActivityComponent.create().inject(this)
 
-        exercise_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        exercise_list.adapter = ExercisesAdapter()
+        initExerciseList()
+        initBottomBar(activity, savedInstanceState)
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        bottomBar?.onSaveInstanceState(outState)
+    }
+
+    private fun initBottomBar(activity: MainActivity, savedInstanceState: Bundle?) {
         bottomBar = BottomBar.attach(this, savedInstanceState)
-
         bottomBar!!.setItems(R.menu.bottom_bar_menu);
         bottomBar!!.setOnMenuTabClickListener(object : OnMenuTabClickListener {
             override fun onMenuTabReSelected(menuItemId: Int) {
@@ -51,12 +66,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         });
-
-
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        bottomBar?.onSaveInstanceState(outState)
+    private fun initExerciseList() {
+        exercise_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        exercise_list.adapter = exerciseAdapter
     }
 }
