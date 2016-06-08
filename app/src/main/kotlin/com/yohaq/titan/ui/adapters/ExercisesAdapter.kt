@@ -20,7 +20,7 @@ import javax.inject.Inject
  */
 class ExercisesAdapter
 @Inject
-constructor(private val presenter: ExerciseCatalogPresenter)
+constructor(val presenter: ExerciseCatalogPresenter)
 : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>(), ExerciseCatalogView {
 
 

@@ -1,5 +1,6 @@
 package com.yohaq.titan.presenters.base
 
+import android.util.Log
 import rx.subscriptions.CompositeSubscription
 
 /**
@@ -27,6 +28,7 @@ abstract class BasePresenter<MvpView> : Presenter<MvpView> {
 
     open fun unsubscribe() {
         subscriptions?.unsubscribe()
+        Log.d("basePresenter", "unsubscribing")
         subscriptions = null
     }
 
