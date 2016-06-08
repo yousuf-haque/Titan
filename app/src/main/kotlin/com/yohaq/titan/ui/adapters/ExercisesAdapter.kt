@@ -18,7 +18,10 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/7/16.
  */
-class ExercisesAdapter @Inject constructor(val presenter: ExerciseCatalogPresenter) : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>(), ExerciseCatalogView {
+class ExercisesAdapter
+@Inject
+constructor(private val presenter: ExerciseCatalogPresenter)
+: RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>(), ExerciseCatalogView {
 
 
     class ExercisesViewHolder(val exerciseItemBinding: ExerciseItemBinding) : RecyclerView.ViewHolder(exerciseItemBinding.root)

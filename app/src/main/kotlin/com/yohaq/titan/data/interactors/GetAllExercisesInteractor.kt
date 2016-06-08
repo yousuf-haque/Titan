@@ -6,7 +6,9 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/7/16.
  */
-class GetAllExercisesInteractor @Inject constructor(val exercisesManager: ExercisesManager) {
+class GetAllExercisesInteractor
+@Inject
+constructor(private val exercisesManager: ExercisesManager) {
 
     fun getAllExercises() = exercisesManager.getExercises()
 

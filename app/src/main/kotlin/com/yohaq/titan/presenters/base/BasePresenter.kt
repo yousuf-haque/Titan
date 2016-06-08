@@ -8,7 +8,7 @@ import rx.subscriptions.CompositeSubscription
 abstract class BasePresenter<MvpView> : Presenter<MvpView> {
     override var view: MvpView? = null
 
-    var subscriptions: CompositeSubscription? = null
+    protected var subscriptions: CompositeSubscription? = null
 
     override fun attachView(view: MvpView) {
         super.attachView(view)

@@ -9,10 +9,12 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/7/16.
  */
-class ExerciseCatalogPresenter @Inject constructor(val allExercisesObservable: Observable<List<Exercise>>) : BasePresenter<ExerciseCatalogView>() {
+class ExerciseCatalogPresenter
+@Inject
+constructor(private val allExercisesObservable: Observable<List<Exercise>>) : BasePresenter<ExerciseCatalogView>() {
 
     override fun subscribe() {
         super.subscribe()
-        allExercisesObservable.subscribe({ exercises -> this.view?.showExercises(exercises) })
+        subscriptions?.add(allExercisesObservable.subscribe({ view?.showExercises(it)}))
     }
 }
