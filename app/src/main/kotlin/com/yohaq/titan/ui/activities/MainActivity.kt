@@ -10,7 +10,7 @@ import com.roughike.bottombar.OnMenuTabClickListener
 import com.yohaq.titan.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_exercises.view.*
-import kotlinx.android.synthetic.main.view_history.view.*
+import kotlinx.android.synthetic.main.view_workout_history.view.*
 
 class MainActivity : AppCompatActivity() {
 

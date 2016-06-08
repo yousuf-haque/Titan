@@ -11,7 +11,7 @@
                  android:layout_height="match_parent"
         >
 
-        <include layout="@layout/view_history"/>
+        <include layout="@layout/view_workout_history"/>
 
         <include layout="@layout/view_exercises"/>
     </FrameLayout>
