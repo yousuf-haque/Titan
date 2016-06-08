@@ -11,7 +11,6 @@ import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
 import com.yohaq.titan.presenters.ExerciseCatalogPresenter
 import com.yohaq.titan.ui.viewModels.ExerciseViewModel
-import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
 import java.util.*
 import javax.inject.Inject
 
@@ -20,8 +19,8 @@ import javax.inject.Inject
  */
 class ExercisesAdapter
 @Inject
-constructor(val presenter: ExerciseCatalogPresenter)
-: RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>(), ExerciseCatalogView {
+constructor(private val presenter: ExerciseCatalogPresenter)
+: RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>() {
 
 
     class ExercisesViewHolder(val exerciseItemBinding: ExerciseItemBinding) : RecyclerView.ViewHolder(exerciseItemBinding.root)
@@ -37,7 +36,7 @@ constructor(val presenter: ExerciseCatalogPresenter)
     override fun getItemCount() = exercises.size
 
 
-    override fun showExercises(exercises: List<Exercise>) {
+    fun updateExercises(exercises: List<Exercise>) {
         this.exercises = exercises
         notifyDataSetChanged()
     }
@@ -59,13 +58,4 @@ constructor(val presenter: ExerciseCatalogPresenter)
         return ExercisesViewHolder(exerciseItemBinding)
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
-        super.onAttachedToRecyclerView(recyclerView)
-        presenter.attachView(this)
-    }
-
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
-        super.onDetachedFromRecyclerView(recyclerView)
-        presenter.detachView()
-    }
 }

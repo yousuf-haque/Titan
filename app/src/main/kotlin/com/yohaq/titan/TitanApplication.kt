@@ -23,6 +23,7 @@ class TitanApplication : Application() {
         super.onCreate()
         appComponent = DaggerApplicationComponent.builder().applicationModule(ApplicationModule(this)).build()
         appComponent.inject(this)
+        Realm.deleteRealm(realmConfiguration)
 
         Realm.setDefaultConfiguration(realmConfiguration)
     }
