@@ -1,5 +1,7 @@
 package com.yohaq.titan.ui.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -11,6 +13,13 @@ import kotlinx.android.synthetic.main.view_exercises.view.*
 import kotlinx.android.synthetic.main.view_history.view.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun createIntent(context: Context) =
+                Intent(context, MainActivity::class.java)
+
+    }
 
     private var bottomBar: BottomBar? = null
 

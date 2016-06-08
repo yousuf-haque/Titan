@@ -9,7 +9,7 @@ import io.realm.Realm
  * Created by yousufhaque on 6/7/16.
  */
 @Module
-class ExercisesModule() {
+class ExerciseCatalogModule() {
 
     @Provides
     fun provideRealm() = Realm.getDefaultInstance()
