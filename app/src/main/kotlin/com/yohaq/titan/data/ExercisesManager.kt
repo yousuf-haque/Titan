@@ -1,8 +1,8 @@
 package com.yohaq.titan.data
 
 import com.yohaq.titan.data.models.Exercise
+import io.realm.Realm
 import rx.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -13,15 +13,39 @@ class ExercisesManager @Inject constructor() {
 
     lateinit private var exercises: List<Exercise>
 
-    init {
+    lateinit var realm: Realm
 
-        exercises = ArrayList<Exercise>()
-        for (name in arrayOf("push up", "sit up", "DataManager working", "RX working")) {
-            (exercises as ArrayList<Exercise>).add(Exercise(name))
-        }
+    init {
+//
+//        exercises = ArrayList<Exercise>()
+//        for (name in arrayOf("push up", "sit up", "DataManager working", "RX working")) {
+//            (exercises as ArrayList<Exercise>).add(Exercise(name = name))
+//        }
+//        realm = Realm.getDefaultInstance()
+//
+//        realm.executeTransaction {
+//            val exercise = realm.createObject(Exercise::class.java)
+//            exercise.id = UUID.randomUUID().toString()
+//            exercise.name = "realmWorking"
+//        }
+//
+//        realm.close()
+
 
     }
 
 
-    fun getExercises() = Observable.just(exercises)
+    fun getExercises(): Observable<List<Exercise>> {
+
+        realm = Realm.getDefaultInstance()
+
+        val realmResults = realm.where(Exercise::class.java).findAllAsync().asObservable().map map@{
+            val result = realm.copyFromRealm(it)
+            realm.close()
+            return@map result
+
+        }
+
+        return realmResults
+    }
 }
