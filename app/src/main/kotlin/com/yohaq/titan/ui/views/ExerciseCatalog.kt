@@ -32,7 +32,7 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         DaggerExerciseCatalogComponent.create().inject(this)
-        exercise_list.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        exercise_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         exercise_list.adapter = exerciseAdapter
         add_exercise_button.setOnClickListener { handleCreateExerciseButtonClick() }
         presenter.attachView(this)
@@ -40,7 +40,7 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
     }
 
     private fun handleCreateExerciseButtonClick() {
-        this.context.startActivity(CreateExerciseActivity.createIntent(this.context))
+        context.startActivity(CreateExerciseActivity.createIntent(context))
     }
 
     override fun onDetachedFromWindow() {

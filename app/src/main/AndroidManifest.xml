@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".ui.activities.CreateExerciseActivity">
         </activity>
+        <activity android:name=".ui.activities.CreateWorkoutActivity">
+        </activity>
     </application>
 
 </manifest>

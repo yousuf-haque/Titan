@@ -6,13 +6,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import com.yohaq.titan.data.models.Workout
 import com.yohaq.titan.injection.components.DaggerWorkoutHistoryComponent
-import com.yohaq.titan.presenters.CreateWorkoutPresenter
 import com.yohaq.titan.presenters.WorkoutHistoryPresenter
+import com.yohaq.titan.ui.activities.CreateWorkoutActivity
 import com.yohaq.titan.ui.adapters.WorkoutHistoryAdapter
 import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryView
 import io.realm.Realm
 import kotlinx.android.synthetic.main.view_workout_history.view.*
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -28,13 +27,11 @@ class WorkoutHistory(context: Context?, attrs: AttributeSet?) : CoordinatorLayou
     @Inject
     lateinit var presenter: WorkoutHistoryPresenter
 
-    @Inject
-    lateinit var presenter2: CreateWorkoutPresenter
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         DaggerWorkoutHistoryComponent.create().inject(this)
-        workout_history_list.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        workout_history_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         workout_history_list.adapter = workoutHistoryAdapter
         add_workout_button.setOnClickListener { handleCreateWorkoutButtonClick() }
         presenter.attachView(this)
@@ -44,10 +41,11 @@ class WorkoutHistory(context: Context?, attrs: AttributeSet?) : CoordinatorLayou
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         presenter.detachView()
+        realm.close()
     }
 
     private fun handleCreateWorkoutButtonClick() {
-        presenter2.createWorkout(Date())
+        context.startActivity(CreateWorkoutActivity.createIntent(context))
     }
 
     override fun showWorkouts(workouts: List<Workout>) {
