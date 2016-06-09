@@ -55,4 +55,5 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
         exerciseAdapter.updateExercises(exercises);
     }
 
+
 }
