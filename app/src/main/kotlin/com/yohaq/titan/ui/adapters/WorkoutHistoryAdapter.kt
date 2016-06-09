@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Workout
 import com.yohaq.titan.databinding.WorkoutItemBinding
@@ -42,10 +41,7 @@ constructor()
         @Suppress("MISSING_DEPENDENCY_CLASS")
         holder.workoutItemBinding.viewModel = WorkoutViewModel(workouts[position])
 
-        holder.workoutItemBinding.root.setOnClickListener {
-            view ->
-            Toast.makeText(view.context, workouts[position].date.toString(), Toast.LENGTH_LONG).show()
-        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder? {
