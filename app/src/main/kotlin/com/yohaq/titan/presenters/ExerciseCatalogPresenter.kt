@@ -1,9 +1,8 @@
 package com.yohaq.titan.presenters
 
-import com.yohaq.titan.data.models.Exercise
+import com.yohaq.titan.data.interactors.GetAllExercisesInteractor
 import com.yohaq.titan.presenters.base.BasePresenter
 import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
-import rx.Observable
 import javax.inject.Inject
 
 /**
@@ -11,11 +10,11 @@ import javax.inject.Inject
  */
 class ExerciseCatalogPresenter
 @Inject
-constructor(private val allExercisesObservable: Observable<List<Exercise>>) : BasePresenter<ExerciseCatalogView>() {
+constructor(private val getAllExercisesInteractor: GetAllExercisesInteractor) : BasePresenter<ExerciseCatalogView>() {
 
     override fun subscribe() {
         super.subscribe()
-        subscriptions?.add(allExercisesObservable.subscribe({ view?.showExercises(it)}))
+        subscriptions?.add(getAllExercisesInteractor.getAllExercises().subscribe({ view?.showExercises(it) }))
     }
 
 
