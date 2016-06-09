@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
+import android.widget.Toast
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.injection.components.DaggerExerciseCatalogComponent
 import com.yohaq.titan.presenters.ExerciseCatalogPresenter
@@ -33,6 +34,7 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
         super.onAttachedToWindow()
         DaggerExerciseCatalogComponent.create().inject(this)
         exercise_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        exerciseAdapter.onExerciseClick = { exercise -> Toast.makeText(context, "I'm passed in ${exercise.name}", Toast.LENGTH_SHORT).show() }
         exercise_list.adapter = exerciseAdapter
         add_exercise_button.setOnClickListener { handleCreateExerciseButtonClick() }
         presenter.attachView(this)

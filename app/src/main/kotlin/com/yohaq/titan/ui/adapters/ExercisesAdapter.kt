@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
@@ -30,6 +29,8 @@ constructor()
         exercises = ArrayList<Exercise>()
     }
 
+    var onExerciseClick: ((Exercise) -> Unit)? = null
+
 
     override fun getItemCount() = exercises.size
 
@@ -44,9 +45,10 @@ constructor()
         @Suppress("MISSING_DEPENDENCY_CLASS")
         holder.exerciseItemBinding.viewModel = ExerciseViewModel(exercises[position])
 
-        holder.exerciseItemBinding.root.setOnClickListener {
-            view ->
-            Toast.makeText(view.context, exercises[position].name, Toast.LENGTH_LONG).show()
+        if (onExerciseClick != null) {
+            holder.exerciseItemBinding.root.setOnClickListener {
+                onExerciseClick!!.invoke(exercises[position])
+            }
         }
 
     }
@@ -56,5 +58,6 @@ constructor()
                 DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.exercise_item, parent, false)
         return ExercisesViewHolder(exerciseItemBinding)
     }
+
 
 }
