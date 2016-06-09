@@ -2,6 +2,7 @@ package com.yohaq.titan.data
 
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.data.models.Workout
+import com.yohaq.titan.data.models.WorkoutSet
 import io.realm.Realm
 import io.realm.RealmList
 import rx.Observable
@@ -14,15 +15,13 @@ import javax.inject.Inject
 class WorkoutManager @Inject constructor(val realm : Realm){
 
 
-
-    fun createWorkout(dateCreated: Date) {
+    fun createWorkout(dateCreated: Date, exercise: Exercise, sets: RealmList<WorkoutSet>) {
         val realm = Realm.getDefaultInstance()
 
         realm.executeTransaction {
-            val workout = realm.createObject(Workout::class.java)
-            workout.date = Date()
-            workout.exercises = RealmList<Exercise>()
+            val workout = Workout(date = dateCreated, exercise = exercise, sets = sets)
 
+            realm.copyToRealmOrUpdate(workout)
         }
 
         realm.close()

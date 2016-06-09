@@ -20,6 +20,7 @@ import com.yohaq.titan.ui.viewModels.ExerciseViewModel
 import com.yohaq.titan.ui.viewModels.SetViewModel
 import com.yohaq.titan.ui.views.interfaces.CreateWorkoutView
 import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
+import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_create_workout.*
 import java.util.*
 import javax.inject.Inject
@@ -44,6 +45,10 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
 
     @Inject
     lateinit var exercisesAdapter: ExercisesAdapter
+
+    var selectedExercise: Exercise? = null
+
+    var sets = RealmList<WorkoutSet>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +91,8 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
         @Suppress("MISSING_DEPENDENCY_CLASS")
         workoutSetItemBinding.viewModel = SetViewModel(newSet)
 
+        sets.add(newSet)
+
 
     }
 
@@ -95,7 +102,8 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
     }
 
     private fun handleAddExerciseButtonClick() {
-        createWorkoutPresenter.createWorkout(Date())
+
+        createWorkoutPresenter.createWorkout(Date(), selectedExercise!!, sets)
         finish()
     }
 
@@ -113,7 +121,8 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
         input_weight_container.visibility = View.VISIBLE
         workout_set_list.visibility = View.VISIBLE
         add_set_button.visibility = View.VISIBLE
-        blank_space.visibility = View.VISIBLE
+
+        selectedExercise = exercise
 
 
         val exerciseItemBinding = DataBindingUtil.bind<ExerciseItemBinding>(selected_exercise)
@@ -132,6 +141,7 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
         input_weight_container.visibility = View.GONE
         workout_set_list.visibility = View.GONE
         add_set_button.visibility = View.GONE
-        blank_space.visibility = View.GONE
+
+        selectedExercise = null
     }
 }

@@ -8,10 +8,10 @@ import com.yohaq.titan.data.models.WorkoutSet
 class SetViewModel(val set: WorkoutSet) {
 
     fun weightToString(): String {
-        return set.weight.toString()
+        return "${set.weight.toString()} lbs"
     }
 
     fun repsToString(): String {
-        return set.reps.toString()
+        return "${set.reps.toString()} reps"
     }
 }

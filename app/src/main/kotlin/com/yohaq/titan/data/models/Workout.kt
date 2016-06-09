@@ -13,7 +13,8 @@ open class Workout(
         @PrimaryKey
         var id: String = UUID.randomUUID().toString(),
         var date: Date = Date(),
-        var exercises: RealmList<Exercise>? = null
+        var exercise: Exercise? = null,
+        var sets: RealmList<WorkoutSet> = RealmList<WorkoutSet>()
 
 ) : RealmObject() {
 }
