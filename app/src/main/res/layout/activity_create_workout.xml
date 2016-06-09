@@ -10,12 +10,78 @@
     <android.support.v7.widget.RecyclerView android:id="@+id/choose_exercise_list"
                                             android:layout_width="match_parent"
                                             android:layout_height="0dp"
-                                            android:layout_weight="1"/>
+                                            android:layout_weight="1"
+                                            android:visibility="gone"
+        />
 
+    <include android:id="@+id/selected_exercise"
+             layout="@layout/exercise_item"
+        />
 
-    <Button android:id="@+id/create_workout_submit_button"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_weight_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_workout"/>
+            android:hint="Weight"
+            android:inputType="numberDecimal"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_reps_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_reps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reps"
+            android:inputType="number"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/add_set_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Set"
+
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/workout_set_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Space android:id="@+id/blank_space"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/create_workout_submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_workout"
+
+        />
 
 </LinearLayout>
