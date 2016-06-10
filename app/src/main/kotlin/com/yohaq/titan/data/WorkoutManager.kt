@@ -16,7 +16,6 @@ class WorkoutManager @Inject constructor(val realm : Realm){
 
 
     fun createWorkout(dateCreated: Date, exercise: Exercise, sets: RealmList<WorkoutSet>) {
-        val realm = Realm.getDefaultInstance()
 
         realm.executeTransaction {
             val workout = Workout(date = dateCreated, exercise = exercise, sets = sets)
@@ -24,7 +23,6 @@ class WorkoutManager @Inject constructor(val realm : Realm){
             realm.copyToRealmOrUpdate(workout)
         }
 
-        realm.close()
     }
 
     fun getWorkouts() : Observable<List<Workout>> {
