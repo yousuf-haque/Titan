@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/8/16.
  */
-class WorkoutManager @Inject constructor(val realm : Realm){
+class WorkoutManager @Inject constructor(val realm: Realm) {
 
 
     fun createWorkout(dateCreated: Date, exercise: Exercise, sets: RealmList<WorkoutSet>) {
@@ -25,11 +25,6 @@ class WorkoutManager @Inject constructor(val realm : Realm){
 
     }
 
-    fun getWorkouts() : Observable<List<Workout>> {
-        return realm.where(Workout::class.java).findAllAsync().asObservable().map map@{
-            val result = realm.copyFromRealm(it)
-            return@map result
+    fun getWorkouts(): Observable<List<Workout>> = realm.where(Workout::class.java).findAllAsync().asObservable().map { realm.copyFromRealm(it) }
 
-        }
-    }
 }

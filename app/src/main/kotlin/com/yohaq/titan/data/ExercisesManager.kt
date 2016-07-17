@@ -20,14 +20,6 @@ class ExercisesManager @Inject constructor(val realm: Realm) {
 
     }
 
-    fun getExercises(): Observable<List<Exercise>> {
+    fun getExercises(): Observable<List<Exercise>> = realm.where(Exercise::class.java).findAllAsync().asObservable().map { realm.copyFromRealm(it) }
 
-
-        return realm.where(Exercise::class.java).findAllAsync().asObservable().map map@{
-            val result = realm.copyFromRealm(it)
-            return@map result
-
-        }
-
-    }
 }
