@@ -10,7 +10,6 @@ import com.roughike.bottombar.OnMenuTabClickListener
 import com.yohaq.titan.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_exercises.view.*
-import kotlinx.android.synthetic.main.view_workout_history.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         bottomBar?.onSaveInstanceState(outState)
     }
 
-    private fun initBottomBar( savedInstanceState: Bundle?) {
+    private fun initBottomBar(savedInstanceState: Bundle?) {
         bottomBar = BottomBar.attach(this, savedInstanceState)
-        bottomBar!!.setItems(R.menu.bottom_bar_menu);
+        bottomBar!!.setItems(R.menu.bottom_bar_menu)
         bottomBar!!.setOnMenuTabClickListener(object : OnMenuTabClickListener {
             override fun onMenuTabReSelected(menuItemId: Int) {
                 handleTabNavigation(menuItemId)
@@ -46,19 +45,28 @@ class MainActivity : AppCompatActivity() {
             override fun onMenuTabSelected(menuItemId: Int) {
                 handleTabNavigation(menuItemId)
             }
-        });
+        })
     }
 
     private fun handleTabNavigation(menuItemId: Int) {
         when (menuItemId) {
             R.id.history_nav_button -> {
-                content.history_list_container.visibility = View.VISIBLE
+                with(supportFragmentManager.beginTransaction()) {
+                    show(supportFragmentManager.findFragmentById(R.id.workout_list_fragment))
+                    commit()
+                }
+
+
+
                 content.exercise_list_container.visibility = View.GONE
 
             }
             R.id.exercise_nav_button -> {
                 content.exercise_list_container.visibility = View.VISIBLE
-                content.history_list_container.visibility = View.GONE
+                with(supportFragmentManager.beginTransaction()) {
+                    hide(supportFragmentManager.findFragmentById(R.id.workout_list_fragment))
+                    commit()
+                }
             }
         }
     }

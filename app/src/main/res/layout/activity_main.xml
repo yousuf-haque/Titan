@@ -11,7 +11,12 @@
                  android:layout_height="match_parent"
         >
 
-        <include layout="@layout/view_workout_history"/>
+        <fragment android:id="@+id/workout_list_fragment"
+                  android:name="com.yohaq.titan.ui.fragments.WorkoutHistoryFragment"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+
+            />
 
         <include layout="@layout/view_exercises"/>
     </FrameLayout>

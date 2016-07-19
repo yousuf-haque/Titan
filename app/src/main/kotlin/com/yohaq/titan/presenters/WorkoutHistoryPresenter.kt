@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/8/16.
  */
-class WorkoutHistoryPresenter
+open class WorkoutHistoryPresenter
 
 @Inject
 constructor(private val getAllWorkoutsInteractor: GetAllWorkoutsInteractor)
