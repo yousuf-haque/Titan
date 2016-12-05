@@ -11,5 +11,5 @@ import io.realm.Realm
 class RealmModule {
 
     @Provides
-    fun providesRealm() = Realm.getDefaultInstance()
+    fun providesRealmFactory() = {Realm.getDefaultInstance()}
 }

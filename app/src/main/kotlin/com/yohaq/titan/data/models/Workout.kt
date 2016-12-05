@@ -12,12 +12,14 @@ import java.util.*
 
 @RealmClass
 open class Workout(
-
-        @PrimaryKey
-        var id: String = UUID.randomUUID().toString(),
         var date: Date = Date(),
         var exercise: Exercise? = null,
         var sets: RealmList<WorkoutSet> = RealmList<WorkoutSet>()
-
 ) : RealmModel {
+    @PrimaryKey
+    var id: String
+
+    init {
+        id = UUID.randomUUID().toString()
+    }
 }

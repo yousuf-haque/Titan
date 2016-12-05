@@ -12,19 +12,23 @@ import javax.inject.Inject
 /**
  * Created by yousufhaque on 6/8/16.
  */
-class WorkoutManager @Inject constructor(val realm: Realm) {
+class WorkoutManager @Inject constructor(val realmFactory: () -> Realm) {
 
 
-    fun createWorkout(dateCreated: Date, exercise: Exercise, sets: RealmList<WorkoutSet>) {
+    fun createWorkout(dateCreated: Date, exercise: Exercise, sets: List<WorkoutSet>) {
 
-        realm.executeTransaction {
-            val workout = Workout(date = dateCreated, exercise = exercise, sets = sets)
+        realmFactory.invoke().executeTransaction {
+                val workout = Workout( dateCreated, exercise, RealmList<WorkoutSet>(*sets.toTypedArray()))
 
-            realm.copyToRealmOrUpdate(workout)
+            realmFactory.invoke().copyToRealmOrUpdate(workout)
         }
 
     }
 
-    fun getWorkouts(): Observable<List<Workout>> = realm.where(Workout::class.java).findAllAsync().asObservable().map { realm.copyFromRealm(it) }
+    fun getWorkouts(): Observable<List<Workout>> {
+        val realm = realmFactory.invoke()
+
+        return realm.where(Workout::class.java).findAllAsync().asObservable().map { realm.copyFromRealm(it) }.doOnUnsubscribe { realm.close() }
+    }
 
 }

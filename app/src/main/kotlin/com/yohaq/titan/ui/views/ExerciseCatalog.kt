@@ -10,7 +10,6 @@ import com.yohaq.titan.presenters.ExerciseCatalogPresenter
 import com.yohaq.titan.ui.activities.CreateExerciseActivity
 import com.yohaq.titan.ui.adapters.ExercisesAdapter
 import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
-import io.realm.Realm
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import javax.inject.Inject
 
@@ -23,8 +22,6 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
     @Inject
     lateinit var exerciseAdapter: ExercisesAdapter
 
-    @Inject
-    lateinit var realm: Realm
 
     @Inject
     lateinit var presenter : ExerciseCatalogPresenter
@@ -46,7 +43,6 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         presenter.detachView()
-        realm.close()
     }
 
     override fun showExercises(exercises: List<Exercise>) {

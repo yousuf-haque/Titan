@@ -1,8 +1,10 @@
 package com.yohaq.titan.injection.modules
 
 import android.content.Context
+import com.yohaq.titan.injection.scopes.ApplicationScope
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
 import io.realm.RealmConfiguration
 
 /**
@@ -10,12 +12,16 @@ import io.realm.RealmConfiguration
  */
 @Module
 class ApplicationModule(val context: Context) {
+    init {
+        Realm.init(context)
+    }
 
     @Provides
     fun providesContext(): Context = context
 
     @Provides
-    fun provideRealmConfiguration(context: Context) = RealmConfiguration.Builder(context)
-            .name("titan.realm")
+    @ApplicationScope
+    fun provideRealmConfiguration() = RealmConfiguration.Builder()
+            .name("titan.realmFactory")
             .build()
 }

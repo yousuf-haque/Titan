@@ -13,7 +13,6 @@ import com.yohaq.titan.presenters.WorkoutHistoryPresenter
 import com.yohaq.titan.ui.activities.CreateWorkoutActivity
 import com.yohaq.titan.ui.adapters.WorkoutHistoryAdapter
 import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryByDateView
-import io.realm.Realm
 import kotlinx.android.synthetic.main.daily_workout_fragment.*
 import java.util.*
 import javax.inject.Inject
@@ -38,8 +37,6 @@ class WorkoutHistoryFragment : Fragment(), WorkoutHistoryByDateView {
     @Inject
     lateinit var workoutHistoryAdapter: WorkoutHistoryAdapter
 
-    @Inject
-    lateinit var realm: Realm
 
     @Inject
     lateinit var presenter: WorkoutHistoryPresenter
@@ -48,7 +45,6 @@ class WorkoutHistoryFragment : Fragment(), WorkoutHistoryByDateView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
-        realm.close()
     }
 
     private fun handleCreateWorkoutButtonClick() {

@@ -10,7 +10,6 @@ import com.yohaq.titan.presenters.WorkoutHistoryPresenter
 import com.yohaq.titan.ui.activities.CreateWorkoutActivity
 import com.yohaq.titan.ui.adapters.WorkoutHistoryAdapter
 import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryView
-import io.realm.Realm
 import kotlinx.android.synthetic.main.view_workout_history.view.*
 import javax.inject.Inject
 
@@ -21,8 +20,6 @@ class WorkoutHistory(context: Context?, attrs: AttributeSet?) : CoordinatorLayou
     @Inject
     lateinit var workoutHistoryAdapter: WorkoutHistoryAdapter
 
-    @Inject
-    lateinit var realm: Realm
 
     @Inject
     lateinit var presenter: WorkoutHistoryPresenter
@@ -41,7 +38,6 @@ class WorkoutHistory(context: Context?, attrs: AttributeSet?) : CoordinatorLayou
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         presenter.detachView()
-        realm.close()
     }
 
     private fun handleCreateWorkoutButtonClick() {

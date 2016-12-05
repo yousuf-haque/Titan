@@ -20,7 +20,6 @@ import com.yohaq.titan.ui.viewModels.ExerciseViewModel
 import com.yohaq.titan.ui.viewModels.SetViewModel
 import com.yohaq.titan.ui.views.interfaces.CreateWorkoutView
 import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
-import io.realm.RealmList
 import kotlinx.android.synthetic.main.activity_create_workout.*
 import java.util.*
 import javax.inject.Inject
@@ -48,7 +47,7 @@ class CreateWorkoutActivity : AppCompatActivity(), CreateWorkoutView, ExerciseCa
 
     var selectedExercise: Exercise? = null
 
-    var sets = RealmList<WorkoutSet>()
+    var sets : MutableList<WorkoutSet> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -10,8 +10,8 @@ import java.util.*
  */
 @RealmClass
 open class Exercise(
-        @PrimaryKey
-        var id: String = UUID.randomUUID().toString(),
         var name: String = ""
 ) : RealmModel {
+        @PrimaryKey
+        var id: String = UUID.randomUUID().toString()
 }
