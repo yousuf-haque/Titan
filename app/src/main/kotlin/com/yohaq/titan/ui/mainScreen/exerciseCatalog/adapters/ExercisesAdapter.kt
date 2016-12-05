@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
-import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExerciseViewModel
+import rx.Observable
 import java.util.*
 import javax.inject.Inject
 
@@ -35,17 +35,22 @@ constructor()
     override fun getItemCount() = exercises.size
 
 
-    fun updateExercises(exercises: List<Exercise>) {
-        this.exercises = exercises
-        notifyDataSetChanged()
+     val bindObservable = { exercisesObservable: Observable<List<Exercise>> ->
+        exercisesObservable.doOnNext { exercises: List<Exercise> ->
+            this.exercises = exercises
+
+            notifyDataSetChanged()
+        }
     }
+
+
 
     override fun onBindViewHolder(holder: ExercisesViewHolder, position: Int) {
         //Seems like an IDE bug: https://youtrack.jetbrains.com/issue/KT-12402
         @Suppress("MISSING_DEPENDENCY_CLASS")
         holder.exerciseItemBinding.viewModel = ExerciseViewModel(exercises[position])
 
-        if (onExerciseClick != null) {
+        onExerciseClick?.let {
             holder.exerciseItemBinding.root.setOnClickListener {
                 onExerciseClick!!.invoke(exercises[position])
             }
@@ -61,3 +66,4 @@ constructor()
 
 
 }
+

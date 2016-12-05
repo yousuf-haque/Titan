@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Workout
 import com.yohaq.titan.databinding.WorkoutItemBinding
+import rx.Observable
 import javax.inject.Inject
 
 /**
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class WorkoutHistoryAdapter
 @Inject
 constructor()
-: RecyclerView.Adapter<WorkoutHistoryAdapter.WorkoutsViewHolder>() {
+    : RecyclerView.Adapter<WorkoutHistoryAdapter.WorkoutsViewHolder>() {
 
     class WorkoutsViewHolder(val workoutItemBinding: WorkoutItemBinding) : RecyclerView.ViewHolder(workoutItemBinding.root)
 
@@ -25,11 +26,12 @@ constructor()
         workouts = mutableListOf()
     }
 
-    fun updateWorkouts(workouts: List<Workout>) {
-        this.workouts = workouts
-        notifyDataSetChanged()
+    val bindObservable = { workoutsObservable: Observable<List<Workout>> ->
+        workoutsObservable.doOnNext { workouts: List<Workout> ->
+            this.workouts = workouts
+            notifyDataSetChanged()
+        }
     }
-
 
     override fun getItemCount() = workouts.size
 

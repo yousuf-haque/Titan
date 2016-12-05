@@ -4,16 +4,16 @@ import android.content.Context
 import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
-import com.yohaq.titan.data.models.Exercise
-import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExercisesAdapter
+import com.trello.rxlifecycle.kotlin.bindToLifecycle
 import com.yohaq.titan.ui.createExerciseScreen.CreateExerciseActivity
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExercisesAdapter
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import javax.inject.Inject
 
 /**
  * Created by yousufhaque on 6/8/16.
  */
-class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayout(context, attrs), ExerciseCatalogView {
+class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayout(context, attrs) {
 
 
     @Inject
@@ -21,15 +21,15 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
 
 
     @Inject
-    lateinit var presenter : ExerciseCatalogPresenter
+    lateinit var presenter : ExerciseCatalogViewModel
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         DaggerExerciseCatalogComponent.create().inject(this)
         exercise_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         exercise_list.adapter = exerciseAdapter
+        exerciseAdapter.bindObservable(presenter.exercisesObservable).bindToLifecycle(this).subscribe()
         add_exercise_button.setOnClickListener { handleCreateExerciseButtonClick() }
-        presenter.attachView(this)
 
     }
 
@@ -37,14 +37,8 @@ class ExerciseCatalog(context: Context?, attrs: AttributeSet?) : CoordinatorLayo
         context.startActivity(CreateExerciseActivity.createIntent(context))
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        presenter.detachView()
-    }
 
-    override fun showExercises(exercises: List<Exercise>) {
-        exerciseAdapter.updateExercises(exercises);
-    }
+
 
 
 }

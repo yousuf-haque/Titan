@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_create_exercise.*
 import javax.inject.Inject
 
 
-class CreateExerciseActivity : AppCompatActivity(), CreateExerciseView {
+class CreateExerciseActivity : AppCompatActivity() {
 
     companion object {
 
@@ -19,25 +19,23 @@ class CreateExerciseActivity : AppCompatActivity(), CreateExerciseView {
     }
 
     @Inject
-    lateinit var presenter: CreateExercisePresenter
+    lateinit var viewModel: CreateExerciseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_exercise)
 
         DaggerCreateExerciseComponent.create().inject(this)
-        presenter.attachView(this)
 
         create_exercise_submit_button.setOnClickListener { handleSubmit() }
     }
 
     private fun handleSubmit() {
-        presenter.createExercise(exercise_name_input.text.toString())
+        viewModel.createExercise(exercise_name_input.text.toString())
         finish()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
     }
 }
