@@ -1,8 +1,8 @@
-package com.yohaq.titan.presenters
+package com.yohaq.titan.ui.createExerciseScreen
 
 import com.yohaq.titan.data.interactors.CreateExerciseInteractor
 import com.yohaq.titan.presenters.base.BasePresenter
-import com.yohaq.titan.ui.views.interfaces.CreateExerciseView
+import com.yohaq.titan.ui.createExerciseScreen.CreateExerciseView
 import javax.inject.Inject
 
 /**

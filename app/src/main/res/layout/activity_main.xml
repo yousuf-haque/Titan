@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".ui.mainScreen.MainActivity">
 
     <FrameLayout android:id="@+id/content"
                  android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         >
 
         <fragment android:id="@+id/workout_list_fragment"
-                  android:name="com.yohaq.titan.ui.fragments.WorkoutHistoryFragment"
+                  android:name="com.yohaq.titan.ui.mainScreen.workoutHistory.workoutHistoryByDate.WorkoutHistoryFragment"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
 

@@ -6,7 +6,7 @@
     <data>
 
         <variable name="viewModel"
-                  type="com.yohaq.titan.ui.viewModels.SetViewModel"/>
+                  type="com.yohaq.titan.ui.createWorkoutScreen.SetViewModel"/>
     </data>
 
     <android.support.v7.widget.CardView

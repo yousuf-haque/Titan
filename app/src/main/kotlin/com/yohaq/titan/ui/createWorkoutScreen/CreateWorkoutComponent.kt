@@ -1,8 +1,8 @@
-package com.yohaq.titan.injection.components
+package com.yohaq.titan.ui.createWorkoutScreen
 
 import com.yohaq.titan.injection.modules.RealmModule
 import com.yohaq.titan.injection.scopes.ViewScope
-import com.yohaq.titan.ui.activities.CreateWorkoutActivity
+import com.yohaq.titan.ui.createWorkoutScreen.CreateWorkoutActivity
 import dagger.Component
 
 /**

@@ -1,5 +1,6 @@
-package com.yohaq.titan.ui.views.interfaces
+package com.yohaq.titan.ui.mainScreen.workoutHistory.workoutHistoryByDate
 
+import com.yohaq.titan.ui.mainScreen.workoutHistory.WorkoutHistoryView
 import java.util.*
 
 /**

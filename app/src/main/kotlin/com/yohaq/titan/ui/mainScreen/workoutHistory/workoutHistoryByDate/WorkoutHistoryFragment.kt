@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.fragments
+package com.yohaq.titan.ui.mainScreen.workoutHistory.workoutHistoryByDate
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Workout
-import com.yohaq.titan.injection.components.DaggerWorkoutHistoryComponent
-import com.yohaq.titan.presenters.WorkoutHistoryPresenter
-import com.yohaq.titan.ui.activities.CreateWorkoutActivity
-import com.yohaq.titan.ui.adapters.WorkoutHistoryAdapter
-import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryByDateView
+import com.yohaq.titan.ui.createWorkoutScreen.CreateWorkoutActivity
+import com.yohaq.titan.ui.mainScreen.workoutHistory.DaggerWorkoutHistoryComponent
+import com.yohaq.titan.ui.mainScreen.workoutHistory.WorkoutHistoryPresenter
+import com.yohaq.titan.ui.mainScreen.workoutHistory.adapters.WorkoutHistoryAdapter
+import com.yohaq.titan.ui.mainScreen.workoutHistory.workoutHistoryByDate.WorkoutHistoryByDateView
 import kotlinx.android.synthetic.main.daily_workout_fragment.*
 import java.util.*
 import javax.inject.Inject

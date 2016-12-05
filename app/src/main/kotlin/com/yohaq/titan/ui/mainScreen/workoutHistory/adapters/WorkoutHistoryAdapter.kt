@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.adapters
+package com.yohaq.titan.ui.mainScreen.workoutHistory.adapters
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Workout
 import com.yohaq.titan.databinding.WorkoutItemBinding
-import com.yohaq.titan.ui.viewModels.WorkoutViewModel
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -24,7 +22,7 @@ constructor()
     private var workouts: List<Workout>
 
     init {
-        workouts = ArrayList<Workout>()
+        workouts = mutableListOf()
     }
 
     fun updateWorkouts(workouts: List<Workout>) {
@@ -47,7 +45,7 @@ constructor()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder? {
         val workoutItemBinding: WorkoutItemBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.workout_item, parent, false)
-        return WorkoutHistoryAdapter.WorkoutsViewHolder(workoutItemBinding)
+        return WorkoutsViewHolder(workoutItemBinding)
     }
 
 }

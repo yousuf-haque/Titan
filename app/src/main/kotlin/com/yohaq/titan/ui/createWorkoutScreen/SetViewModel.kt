@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.viewModels
+package com.yohaq.titan.ui.createWorkoutScreen
 
 import com.yohaq.titan.data.models.WorkoutSet
 

@@ -1,15 +1,12 @@
-package com.yohaq.titan.ui.views
+package com.yohaq.titan.ui.mainScreen.workoutHistory
 
 import android.content.Context
 import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import com.yohaq.titan.data.models.Workout
-import com.yohaq.titan.injection.components.DaggerWorkoutHistoryComponent
-import com.yohaq.titan.presenters.WorkoutHistoryPresenter
-import com.yohaq.titan.ui.activities.CreateWorkoutActivity
-import com.yohaq.titan.ui.adapters.WorkoutHistoryAdapter
-import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryView
+import com.yohaq.titan.ui.createWorkoutScreen.CreateWorkoutActivity
+import com.yohaq.titan.ui.mainScreen.workoutHistory.adapters.WorkoutHistoryAdapter
 import kotlinx.android.synthetic.main.view_workout_history.view.*
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.viewModels
+package com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters
 
 import com.yohaq.titan.data.models.Exercise
 

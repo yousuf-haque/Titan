@@ -1,10 +1,9 @@
-package com.yohaq.titan.presenters
+package com.yohaq.titan.ui.createWorkoutScreen
 
 import com.yohaq.titan.data.interactors.CreateWorkoutInteractor
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.data.models.WorkoutSet
 import com.yohaq.titan.presenters.base.BasePresenter
-import com.yohaq.titan.ui.views.interfaces.CreateWorkoutView
 import java.util.*
 import javax.inject.Inject
 

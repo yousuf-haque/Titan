@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.views.interfaces
+package com.yohaq.titan.ui.createExerciseScreen
 
 /**
  * Created by yousufhaque on 6/8/16.

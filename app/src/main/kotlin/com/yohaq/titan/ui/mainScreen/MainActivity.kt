@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.activities
+package com.yohaq.titan.ui.mainScreen
 
 import android.content.Context
 import android.content.Intent

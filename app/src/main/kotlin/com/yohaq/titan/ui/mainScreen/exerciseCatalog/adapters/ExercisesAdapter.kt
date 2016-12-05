@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.adapters
+package com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.yohaq.titan.R
 import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.databinding.ExerciseItemBinding
-import com.yohaq.titan.ui.viewModels.ExerciseViewModel
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExerciseViewModel
 import java.util.*
 import javax.inject.Inject
 

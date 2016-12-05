@@ -1,13 +1,10 @@
-package com.yohaq.titan.ui.activities
+package com.yohaq.titan.ui.createExerciseScreen
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.yohaq.titan.R
-import com.yohaq.titan.injection.components.DaggerCreateExerciseComponent
-import com.yohaq.titan.presenters.CreateExercisePresenter
-import com.yohaq.titan.ui.views.interfaces.CreateExerciseView
 import kotlinx.android.synthetic.main.activity_create_exercise.*
 import javax.inject.Inject
 

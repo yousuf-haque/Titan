@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.activities
+package com.yohaq.titan.ui.createWorkoutScreen
 
 import android.content.Context
 import android.content.Intent
@@ -12,14 +12,10 @@ import com.yohaq.titan.data.models.Exercise
 import com.yohaq.titan.data.models.WorkoutSet
 import com.yohaq.titan.databinding.ExerciseItemBinding
 import com.yohaq.titan.databinding.WorkoutSetItemBinding
-import com.yohaq.titan.injection.components.DaggerCreateWorkoutComponent
-import com.yohaq.titan.presenters.CreateWorkoutPresenter
-import com.yohaq.titan.presenters.ExerciseCatalogPresenter
-import com.yohaq.titan.ui.adapters.ExercisesAdapter
-import com.yohaq.titan.ui.viewModels.ExerciseViewModel
-import com.yohaq.titan.ui.viewModels.SetViewModel
-import com.yohaq.titan.ui.views.interfaces.CreateWorkoutView
-import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.ExerciseCatalogPresenter
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.ExerciseCatalogView
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExerciseViewModel
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExercisesAdapter
 import kotlinx.android.synthetic.main.activity_create_workout.*
 import java.util.*
 import javax.inject.Inject

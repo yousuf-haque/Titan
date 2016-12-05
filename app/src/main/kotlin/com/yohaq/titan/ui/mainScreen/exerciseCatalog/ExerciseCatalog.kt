@@ -1,15 +1,12 @@
-package com.yohaq.titan.ui.views
+package com.yohaq.titan.ui.mainScreen.exerciseCatalog
 
 import android.content.Context
 import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import com.yohaq.titan.data.models.Exercise
-import com.yohaq.titan.injection.components.DaggerExerciseCatalogComponent
-import com.yohaq.titan.presenters.ExerciseCatalogPresenter
-import com.yohaq.titan.ui.activities.CreateExerciseActivity
-import com.yohaq.titan.ui.adapters.ExercisesAdapter
-import com.yohaq.titan.ui.views.interfaces.ExerciseCatalogView
+import com.yohaq.titan.ui.mainScreen.exerciseCatalog.adapters.ExercisesAdapter
+import com.yohaq.titan.ui.createExerciseScreen.CreateExerciseActivity
 import kotlinx.android.synthetic.main.view_exercises.view.*
 import javax.inject.Inject
 

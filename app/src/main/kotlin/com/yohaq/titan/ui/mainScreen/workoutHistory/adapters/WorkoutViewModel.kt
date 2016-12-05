@@ -1,4 +1,4 @@
-package com.yohaq.titan.ui.viewModels
+package com.yohaq.titan.ui.mainScreen.workoutHistory.adapters
 
 import com.yohaq.titan.data.models.Workout
 
@@ -7,5 +7,5 @@ import com.yohaq.titan.data.models.Workout
  */
 class WorkoutViewModel (val workout: Workout){
 
-    fun numSets() = "${workout.sets.size.toString()} Sets"
+    fun numSets() = "${workout.sets.size} Sets"
 }

@@ -1,8 +1,7 @@
-package com.yohaq.titan.presenters
+package com.yohaq.titan.ui.mainScreen.workoutHistory.workoutHistoryByDate
 
 import com.yohaq.titan.data.interactors.GetAllWorkoutsInteractor
 import com.yohaq.titan.presenters.base.BasePresenter
-import com.yohaq.titan.ui.views.interfaces.WorkoutHistoryByDateView
 import javax.inject.Inject
 
 /**
